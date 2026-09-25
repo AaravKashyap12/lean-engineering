@@ -1,0 +1,12 @@
+case_id,harness,cli_version,session_model,session_effort,run_n,status,wall_seconds,cost_usd,evidence,notes
+L-a,claude-code,2.1.114,,high,1,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-a,claude-code,2.1.114,,high,2,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-c,claude-code,2.1.114,,high,1,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-c,claude-code,2.1.114,,high,2,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-e,claude-code,2.1.114,,high,1,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-e,claude-code,2.1.114,,high,2,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-f,claude-code,2.1.114,,high,1,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-f,claude-code,2.1.114,,high,2,NOT_RUN,,,evidence/preflight-2026-09.json,Provider preflight failed: isolated auth error; default and configured model probes each timed out after 120 seconds with server_error retries. Case was not started.
+L-b,claude-code,,,,,PENDING,,,,Not selected for the requested pre-launch execution batch.
+L-d,claude-code,,,,,PENDING,,,,Not selected for the requested pre-launch execution batch.
+L-g,claude-code,,,,,PENDING,,,,Not selected for the requested pre-launch execution batch.
