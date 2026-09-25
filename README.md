@@ -87,7 +87,7 @@ Behavior cases and the credited standard-library fixture are in [evals/README.md
 
 ## Pre-launch evaluation status
 
-Format, protected-content, consistency, and fixture checks passed. The selected Codex behavior batch recorded 8/8 full passes across two runs each of L-a, L-c, L-e, and L-f. L-b, L-d, and L-g remain pending. This is not a comparative quality/cost benchmark.
+Format, protected-content, consistency, and fixture checks passed. The Codex behavior batch recorded 9/9 full passes: two runs each of L-a, L-c, L-e, and L-f, and one run of the paired case L-d with Efficiency Skill, whose cheap-tier worker model was confirmed from the Codex rollout. L-b and L-g remain pending. This is not a comparative quality/cost benchmark.
 
 [Recorded results and limitations](evals/RESULTS-2026-09.md) · [Run ledger](evals/results-2026-09.csv). Claude Code runs remain blocked by provider failures; they are not labeled as passes.
 

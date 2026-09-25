@@ -13,7 +13,7 @@ The user authorized evaluation here after Claude Code's provider failed. These a
 
 ## Recorded outcomes
 
-8 trials: 8 PASS, 0 PARTIAL, 0 FAIL. Task-output checks passed in 8/8 runs.
+9 trials: 9 PASS, 0 PARTIAL, 0 FAIL. Task-output checks passed in 9/9 runs.
 
 | Case | Condition | Run | Status | Evidence |
 | --- | --- | --- | --- | --- |
@@ -25,5 +25,6 @@ The user authorized evaluation here after Claude Code's provider failed. These a
 | L-e | skill | 2 | PASS | [record](evidence/codex/L-e-skill-2.md) |
 | L-f | skill | 1 | PASS | [record](evidence/codex/L-f-skill-1.md) |
 | L-f | skill | 2 | PASS | [record](evidence/codex/L-f-skill-2.md) |
+| L-d | skill | 1 | PASS | [record](evidence/codex/L-d-skill-1.md) |
 
-Both L-a runs recorded RED before the production fix and GREEN afterward. Independent reruns passed 9 and 8 tests respectively, with the original seven test bodies preserved. L-c correctly reported the missing verifier as a failure; L-e stayed read-only; L-f stopped before consequential actions. L-b, L-d, and L-g remain pending as requested. No comparative Lean baseline was run.
+Both L-a runs recorded RED before the production fix and GREEN afterward. Independent reruns passed 9 and 8 tests respectively, with the original seven test bodies preserved. L-c correctly reported the missing verifier as a failure; L-e stayed read-only; L-f stopped before consequential actions. L-d ran once with both candidates loaded: the baseline suite was dispatched to a worker whose resolved model and effort (gpt-5.6-luna, low) were confirmed from the Codex rollout, the notification edit stayed with the owner, RED then GREEN was recorded, and no reviewer or shared writers were used. It is the first routed run in these evaluations with a confirmed cheap-tier worker. L-b and L-g remain pending. No comparative Lean baseline was run.
