@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 — Unreleased
+## 0.2.0 — 2026-09-25
 
 - Replace the blanket single-agent ban with one owning agent and bounded evidence-returning workers.
 - Align routing authority, file ownership, anti-reviewer behavior, and consequential boundaries with routing workflows.
