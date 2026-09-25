@@ -1,19 +1,16 @@
 ---
 name: lean-engineering
-description: "Use for efficient single-agent engineering with real checks."
+description: "Deliver bounded software changes with one owning agent, TDD-backed evidence, root-cause debugging, and a deterministic completion gate. Use for bug fixes, small-to-medium features, refactors, and plan execution in an existing repo when the user wants focused work without reviewer swarms or recursive review loops. Triggers: fix this bug, implement this, make the smallest change, run the checks, no subagent swarm, keep it lean. Not for deployments, migrations, security boundaries, or work that cannot be verified locally."
 license: MIT
 metadata:
-  version: 0.1.0
-  author: Aarav, Hermes Agent
+  version: 0.2.0
+  author: Aarav Kashyap
   platforms: [linux, macos, windows]
-  hermes:
-    tags: [single-agent, engineering, tdd, verification, efficiency]
-    related_skills: [test-driven-development, systematic-debugging, plan]
 ---
 
 # Lean Engineering
 
-Deliver reliable software changes with one continuous agent session. Preserve planning, TDD, root-cause debugging, and evidence-based completion; remove recursive subagent, reviewer, and re-review loops.
+Deliver reliable software changes with one owning agent. Preserve planning, TDD, root-cause debugging, and evidence-based completion while allowing bounded workers without recursive LLM review loops.
 
 ## When to Use
 
@@ -23,15 +20,24 @@ Deliver reliable software changes with one continuous agent session. Preserve pl
 
 Do not use this skill for destructive external actions, production deployment, security-sensitive changes, migrations, or changes whose correctness cannot be tested locally without first getting the user's explicit direction.
 
-## Non-Negotiable Execution Mode
+## Owner Model
 
-- Work in one continuous agent session.
-- Do not dispatch subagents, parallel agents, LLM reviewer agents, or re-review loops.
-- Do not invoke `subagent-driven-development`, `dispatching-parallel-agents`, `requesting-code-review`, or `receiving-code-review` unless the user explicitly asks for that exception in the current task.
-- Prefer local deterministic checks over language-model judgment.
+- The session model owns the plan, production-code decisions, all judgment calls, and the completion gate. It remains accountable for every edit.
+- One owner per file. By default the owner makes production-code edits. A routing skill may assign a bounded, clear-shape implementation slice to one worker only after its delegation gate passes; assign an exclusive file scope and hand ownership back before the session edits those files.
+- Bounded workers may run tests and summarize evidence, search the codebase, list call sites, or gather a diff. Workers return evidence; the owner decides what it means.
+- Never dispatch a subagent to double-check the orchestrator's own work.
+- Do not use recursive LLM review loops, implementer/reviewer ping-pong, parallel writers to the same files, or workers for consequential work.
+- Verification is deterministic: tests, types, lint, build, runtime evidence, and owner inspection of the diff. It is never an LLM reviewer dispatch.
 - Never claim a check passed without running and inspecting it.
 
-If another installed workflow recommends a swarm, this skill governs the execution mode for this task because the user chose lean single-agent engineering.
+If another installed workflow proposes a reviewer swarm or recursive review, this skill's owner model governs for the task. Higher-priority host instructions and the user's authorization still apply.
+
+## Works with a routing skill
+
+This engineering workflow governs what stays with the owner, how changes are verified, and the completion gate. A routing skill governs whether to dispatch, to which tier, and at what effort, within those boundaries. State the mode in one line before starting: owner inline, or owner with named bounded workers.
+
+Without a routing skill, dispatch a mechanical or recon worker only if its task is bounded, self-contained enough to brief without the conversation, and verifiable from evidence it returns.
+Otherwise work inline; production-code implementation stays with the owner.
 
 ## Procedure
 
@@ -50,6 +56,7 @@ If another installed workflow recommends a swarm, this skill governs the executi
    - For each behavior change: write one focused failing test, run it and confirm the expected failure, implement the smallest change, then rerun the focused test.
    - Run the relevant regression command after each completed behavior slice.
    - For configuration, generated code, or throwaway spikes where test-first is inappropriate, say why and use the strongest applicable deterministic check.
+   - If a focused test is unavailable or test-first is inappropriate, use the first applicable rung: focused test → type check → build → runtime probe script with recorded output → manual reproduction with recorded output. Name the rung used in the completion report. A lower rung is a disclosed limitation, not proof of behavior it cannot exercise.
    - Completion criterion: each behavior has direct evidence, not only a final broad test run.
 
 4. **Debug by evidence.**
@@ -76,16 +83,13 @@ Use the highest checks the repository supports, in this order where applicable:
 
 A green linter is not a replacement for a behavioral test. A passing test suite is not a replacement for inspecting scope.
 
-## Escalation
+## Consequential work
 
-Stay single-agent by default. Pause and ask the user before proceeding when work involves:
+Security, money, data migrations, concurrency, public contracts, production changes, irreversible operations, final review of a high-risk diff.
 
-- irreversible external actions, deployment, merges, pushes, or publication;
-- secrets, authentication, authorization, payments, personally identifiable data, or security boundaries;
-- database/data migrations, destructive file operations, or production data;
-- concurrency/distributed consistency where the available checks cannot establish confidence.
+For consequential work, stop and ask the user before proceeding unless explicit authorization for that same scope is already recorded. Secrets and security boundaries belong to security; deployments belong to production changes. Keep consequential judgment and the final completion gate with the owner, never a worker.
 
-Propose the narrowest additional check or review needed. Do not create a reviewer swarm.
+Propose the narrowest additional check needed. Do not create a reviewer swarm.
 
 ## Pitfalls
 
@@ -93,7 +97,7 @@ Propose the narrowest additional check or review needed. Do not create a reviewe
 - Do not turn one failed check into several speculative edits.
 - Do not use a full suite as an excuse to skip the focused RED-GREEN evidence.
 - Do not create a long plan for a bounded edit; the plan must reduce uncertainty, not become ceremony.
-- Do not delete an installed third-party skill library to control behavior. Keep it intact for updates and override the execution policy with this skill or project instructions.
+- Preserve installed tooling and unrelated configuration. Express task-specific execution rules in the governing workflow or project instructions instead of deleting other tools.
 
 ## Completion Report
 

@@ -1,6 +1,6 @@
 # Lean Engineering
 
-A portable Agent Skill for focused, single-agent engineering with real verification.
+A portable Agent Skill for focused engineering with one owning agent and real verification.
 
 Keep the useful discipline—understand the code, reproduce the bug, test the change,
 inspect the diff—without recursive reviewer swarms or unnecessary orchestration.
@@ -14,7 +14,8 @@ Works with Codex, Claude Code, and other tools that support `SKILL.md`.
 - Fixes the demonstrated cause rather than accumulating speculative patches.
 - Runs relevant tests, type checks and diff inspection before claiming completion.
 - Reports actual results, skipped checks and blockers without inventing success.
-- Defaults to one agent; multi-agent execution requires an explicit user exception.
+- Keeps one owner accountable for the plan, edits, judgment, and completion; permits evidence-returning workers within an explicit file scope.
+- Excludes recursive LLM reviewers and keeps consequential work with the owner.
 
 ## Install
 
@@ -61,10 +62,7 @@ instructions. Preserve unrelated changes and existing authorization boundaries.
 [Efficiency Skill](https://github.com/AaravKashyap12/efficiency-skill) helps route work
 to an appropriate model tier. Lean Engineering controls the engineering workflow.
 
-Their defaults differ: Lean uses one agent; Efficiency can delegate. When using both,
-keep the single-agent default unless the user explicitly permits delegation for the
-current task. After that exception, Efficiency may route bounded subtasks; Lean's
-testing, scope and evidence requirements still apply. State the chosen mode before work.
+Lean governs ownership, verification, and completion. A routing skill governs the dispatch decision, model tier, and effort within those boundaries. Mechanical and recon workers may return evidence; a routing gate may also authorize a bounded implementation slice with one owner per file. Neither skill authorizes reviewer loops or consequential delegation. State the chosen mode before work.
 
 ## Repository layout
 
@@ -83,11 +81,15 @@ second competing workflow.
 
 ## Validation and limitations
 
-The initial release preserves the author's existing local v0.1 skill instructions.
-Package validation checks names/frontmatter, metadata and source-copy integrity.
-It does not prove better code quality, lower token cost, production safety or a
-particular benchmark result. No comparative behavior evaluation has been published.
-Stars or installation counts are not a substitute for reviewing instructions.
+The 0.2.0 revision preserves the TDD, root-cause debugging, verification ladder, and deterministic completion gate while replacing the blanket subagent ban with an owner model.
+
+Behavior cases and the credited standard-library fixture are in [evals/README.md](evals/README.md). Results are recorded separately from package checks. No comparative improvement in code quality, costs, or production safety is established by this release. A blocked or unrun evaluation is never a pass.
+
+## Pre-launch evaluation status
+
+Format, protected-content, consistency, and fixture checks passed. The selected Codex behavior batch recorded 8/8 full passes across two runs each of L-a, L-c, L-e, and L-f. L-b, L-d, and L-g remain pending. This is not a comparative quality/cost benchmark.
+
+[Recorded results and limitations](evals/RESULTS-2026-09.md) · [Run ledger](evals/results-2026-09.csv). Claude Code runs remain blocked by provider failures; they are not labeled as passes.
 
 ## Contributing
 

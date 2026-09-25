@@ -1,4 +1,4 @@
 interface:
   display_name: "Lean Engineering"
-  short_description: "Focused single-agent coding with real checks"
+  short_description: "One-owner engineering with deterministic checks"
   default_prompt: "Use $lean-engineering to implement this change with focused regression tests and an evidence-backed completion report."
